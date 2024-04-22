@@ -1,0 +1,18 @@
+---
+import Social from "./Social.astro";
+
+let platform: string = "github";
+let username: string = "withastro";
+let baseUrl: string = `https://www.${platform}.com/${username}`;
+---
+
+<footer>
+  <p>
+    ¡Más información sobre mis proyectos en <a href={baseUrl}>{platform}</a>!
+  </p>
+  <Social platform="facebook" username="F" />
+  <Social platform="instagram" username="I" />
+  <Social platform="youtube" username="Y" />
+  <Social platform="tictok" username="T" />
+  <Social platform="twitter" username="TW" />
+</footer>

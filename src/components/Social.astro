@@ -1,0 +1,25 @@
+---
+interface Props {
+  platform: string;
+  username: string;
+}
+let { platform, username } = Astro.props as Props;
+let baseUrl = `https://www.${platform}.com/${username}`;
+---
+
+<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
+
+<style>
+  a {
+    padding: 1rem;
+    color: aqua;
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: capitalize;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+</style>

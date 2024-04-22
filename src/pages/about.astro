@@ -1,7 +1,50 @@
 ---
 import "../styles/index.css";
-let titulo = "Acerca";
-let saludo = "Acerca de nostros";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+
+let titulo: string = "Acerca";
+let saludo: string = "Acerca de nostros";
+
+interface UserData {
+  firstName: string;
+  country: string;
+  occupation: string;
+  hobbies: string[];
+}
+
+interface Vars {
+  bodyColor: string;
+  linkColor: string;
+  uppercase: string;
+  fontWeight: string;
+}
+
+let userData: UserData = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Escritor técnico",
+  hobbies: ["fotografia", "observación de aves", "peñarol"],
+};
+
+let skills: string[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Astro",
+  "Redacción de documentos",
+];
+
+let happy = true;
+let finished = false;
+let goal = 3;
+let vars: Vars = {
+  bodyColor: "white",
+  linkColor: "coral",
+  uppercase: "uppercase",
+  fontWeight: "bold",
+};
 ---
 
 <html lang="en">
@@ -11,27 +54,53 @@ let saludo = "Acerca de nostros";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{titulo}</title>
+    <style define:vars={{ ...vars }}>
+      body {
+        color: var(--bodyColor);
+      }
+      .skill {
+        color: var(--linkColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--uppercase);
+      }
+    </style>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/about/">Acerca de Nosotros</a></li>
-        <li><a href="/blog/">Mis blogs</a></li>
-      </ul>
-    </nav>
+    <Navigation />
     <h1>{saludo}</h1>
     <h1>Sobre mi</h1>
-    <h2>... ¡y mi nuevo sitio Astro!</h2>
-
     <p>
       Estoy trabajando en el tutorial introductorio de Astro. Esta es la segunda
       página de mi sitio web, ¡y es la primera que he construido yo mismo!
     </p>
+    <section>
+      <p>
+        hola me llamo {userData.firstName} y vivo en {userData.country}. Mis
+        hobbies son : {userData.hobbies.join(" ")}
+      </p>
+      <h2>Mis habilidades:</h2>
+      {
+        skills.map((skill) => (
+          <ul>
+            <li class="skill">{skill}</li>
+          </ul>
+        ))
+      }
+    </section>
+    <section>
+      <h2>Condicionales</h2>
+      {happy && <p>¡Estoy feliz de aprender Astro!</p>}
 
-    <p>
-      Este sitio se irá actualizando a medida que vaya completando más partes
-      del tutorial, ¡así que no dejes de visitarlo para ver cómo va mi viaje!
-    </p>
+      {finished && <p>¡He terminado este tutorial!</p>}
+
+      {
+        goal === 3 ? (
+          <p>Mi objetivo es terminar en 3 días.</p>
+        ) : (
+          <p>Mi objetivo no son 3 días.</p>
+        )
+      }
+    </section>
+    <Footer />
   </body>
 </html>

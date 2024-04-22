@@ -1,7 +1,10 @@
 ---
 import "../styles/index.css";
-let titulo = "Inicio en astro";
-let saludo = "Bienvenido a astro";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+
+let titulo: string = "Inicio en astro";
+let saludo: string = "Bienvenido a astro";
 ---
 
 <html lang="en">
@@ -13,13 +16,8 @@ let saludo = "Bienvenido a astro";
     <title>{titulo}</title>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/about/">Acerca de Nosotros</a></li>
-        <li><a href="/blog/">Mis blogs</a></li>
-      </ul>
-    </nav>
+    <Navigation />
     <h1>{saludo}</h1>
+    <Footer />
   </body>
 </html>
